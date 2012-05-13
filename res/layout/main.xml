@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:ems="10"
-                android:text="rtsp://10.0.23.65/output.264" >
+                android:text="rtsp://192.168.0.23:5554/Test2" >
 				
                 <requestFocus />
             </EditText>

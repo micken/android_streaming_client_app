@@ -11,12 +11,16 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
+import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
 
 public class VideoPlayer 
 extends Activity
 implements OnPreparedListener, OnCompletionListener
 {
-	private VideoView mVideo;
+	//private VideoView mVideo;
+	
+	private MyVideo mVideo;
 	private ProgressBar mProgressBar;
 	
 	/** Called when the activity is first created. */
@@ -40,15 +44,18 @@ implements OnPreparedListener, OnCompletionListener
 	    Log.i("VideoPlayer", URL);
 	    
 	    
-	    mVideo = (VideoView) this.findViewById(R.id.videoView1);
+	    mVideo = (MyVideo) this.findViewById(R.id.myVideo1);
 	    mProgressBar = (ProgressBar) this.findViewById(R.id.progressBar1);
 		mProgressBar.setVisibility(View.VISIBLE);
 		mProgressBar.setSystemUiVisibility(View.STATUS_BAR_HIDDEN);
 
+		
 	    mVideo.setVideoPath(URL);
 	    //mVideo.setMediaController(new MediaController(this));
+	    
 	    mVideo.requestFocus();
 	    mVideo.start();
+	    mVideo.setZoom(8);
 	    mVideo.setOnPreparedListener(this);
 	    mVideo.setOnCompletionListener(this);
 	}
