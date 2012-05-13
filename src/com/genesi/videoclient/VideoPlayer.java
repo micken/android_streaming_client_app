@@ -11,6 +11,7 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
+import android.widget.ZoomControls;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 
@@ -22,12 +23,12 @@ implements OnPreparedListener, OnCompletionListener
 	
 	private MyVideo mVideo;
 	private ProgressBar mProgressBar;
-	
+	int zoomlevel;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    
+	    zoomlevel=1;
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -55,9 +56,30 @@ implements OnPreparedListener, OnCompletionListener
 	    
 	    mVideo.requestFocus();
 	    mVideo.start();
-	    mVideo.setZoom(8);
+	    //mVideo.setZoom(8);
 	    mVideo.setOnPreparedListener(this);
 	    mVideo.setOnCompletionListener(this);
+	    ZoomControls zoomControls = (ZoomControls) findViewById(R.id.zoomControls1);
+	    zoomControls.setIsZoomInEnabled(true);
+	    zoomControls.setIsZoomOutEnabled(true);
+
+	    zoomControls.setOnZoomInClickListener(new ZoomControls.OnClickListener(){
+	        public void onClick(View v){
+	                if(zoomlevel < 8){
+	                    zoomlevel++;
+	                    mVideo.setZoom(zoomlevel);
+	                }
+	        }
+	    });
+	    
+	    zoomControls.setOnZoomOutClickListener(new ZoomControls.OnClickListener(){
+	        public void onClick(View v){
+	                if(zoomlevel > 1){
+	                    zoomlevel--;
+	                    mVideo.setZoom(zoomlevel);
+	                }
+	        }
+	    });   
 	}
 
 	public void onPrepared(MediaPlayer mp) {
