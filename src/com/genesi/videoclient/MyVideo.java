@@ -16,11 +16,13 @@ public class MyVideo extends VideoView {
 
 	public MyVideo(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
+		zoom=1;
 		// TODO Auto-generated constructor stub
 	}
 
 	public MyVideo(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		zoom=1;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -236,6 +238,7 @@ public class MyVideo extends VideoView {
 	
 	public MyVideo(Context context) {
 		super(context);
+		zoom=1;
 		// TODO Auto-generated constructor stub
 	}
 	
